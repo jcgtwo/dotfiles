@@ -1,6 +1,36 @@
 version 6.0
-colors desert
-set nocompatible
+set nocompatible " be iMproved, req'd by vundle
+
+filetype off " req'd by vundle
+
+" set runtime path to include vundle and init it
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin() " or ('~/path/to/install/plugins/here')
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'godlygeek/tabular'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-markdown'
+
+Plugin 'vim-ruby/vim-ruby'
+
+
+call vundle#end()
+
+"execute pathogen#infect()
+
+syntax on
+
+filetype plugin indent on
+
+
+set hlsearch
 set background=dark
 set backspace=indent,eol,start
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -14,7 +44,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
-filetype indent on
 set list listchars=tab:»·,trail:·,eol:$
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set termencoding=utf-8
@@ -44,3 +73,8 @@ au BufNewFile,BufRead *.(rb|erb) map <Leader>p :w<CR>:!ruby %<CR>
 
 " ^BS kills trailing whitespace
 map <leader>w :%s/\s\+$//<cr>
+
+colors desert
+
+set laststatus=2 " always show status line
+set statusline=%f\ \|\ %{fugitive#statusline()}

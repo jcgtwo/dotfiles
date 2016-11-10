@@ -50,6 +50,7 @@ set termencoding=utf-8
 set encoding=utf-8
 set window=55
 set relativenumber
+set number
 set undofile
 set wrap
 set textwidth=79

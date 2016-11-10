@@ -78,4 +78,4 @@ map <leader>w :%s/\s\+$//<cr>
 colors desert
 
 set laststatus=2 " always show status line
-set statusline=%f\ \|\ %{fugitive#statusline()}
+set statusline=%f\ %y\ %r\ \(y=%l/%L,x=%c\)\ \|\ %{fugitive#statusline()}

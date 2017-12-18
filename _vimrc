@@ -1,7 +1,9 @@
-version 6.0
+version 8.0
 set nocompatible " be iMproved, req'd by vundle
 
 filetype off " req'd by vundle
+
+packadd! matchit
 
 " set runtime path to include vundle and init it
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -19,7 +21,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-markdown'
 
 Plugin 'vim-ruby/vim-ruby'
-
 
 call vundle#end()
 
@@ -59,8 +60,15 @@ set colorcolumn=80
 "map <F12> :w<CR>:!scp % jgibson@jgibson-mc:<CR>
 let c_space_errors = 1
 syn on
-set guifont=Menlo\ Regular:h10
+"set guifont=Menlo\ Regular:h10
+set guifont=Input\ Semi-Condensed\ 10
 set clipboard=unnamed
+
+if has("autocmd")
+  autocmd FileType ruby set omnifunc=rubycomplete#Complete
+  autocmd FileType ruby let g:rubycomplete_buffer_loading=1
+  autocmd FileType ruby let g:rubycomplete_classes_in_global=1
+endif
 
 " Python tabs
 au BufNewFile,BufRead *.py setlocal tabstop=4
@@ -68,12 +76,24 @@ au BufNewFile,BufRead *.py setlocal shiftwidth=4
 au BufNewFile,BufRead *.py map <Leader>p :w<CR>:!python %<CR>
 
 " Ruby tabs
-au BufNewFile,BufRead *.(rb|erb) setlocal tabstop=2
-au BufNewFile,BufRead *.(rb|erb) setlocal shiftwidth=2
-au BufNewFile,BufRead *.(rb|erb) map <Leader>p :w<CR>:!ruby %<CR>
+au BufNewFile,BufRead *.rb,*.erb setlocal tabstop=2
+au BufNewFile,BufRead *.rb,*.erb setlocal shiftwidth=2
+au BufNewFile,BufRead *.rb,*.erb map <Leader>p :w<CR>:!ruby %<CR>
 
-" ^BS kills trailing whitespace
+" CSV/TSV tabs
+au BufNewFile,BufRead *.csv,*.tsv setlocal tabstop=4
+au BufNewFile,BufRead *.csv,*.tsv setlocal shiftwidth=4
+au BufNewFile,BufRead *.csv,*.tsv setlocal noexpandtab
+
+" Markdown tabs
+au BufNewFile,BufRead *.md,*.markdown setlocal tabstop=4
+au BufNewFile,BufRead *.md,*.markdown setlocal shiftwidth=4
+
+" \w kills trailing whitespace
 map <leader>w :%s/\s\+$//<cr>
+
+" \c runs ctags on the current directory
+map <leader>c :!ctags -R .
 
 colors desert
 

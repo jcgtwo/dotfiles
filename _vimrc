@@ -95,7 +95,12 @@ map <leader>w :%s/\s\+$//<cr>
 " \c runs ctags on the current directory
 map <leader>c :!ctags -R .
 
-colors desert
+" \h gets the highlighting type for the word under the cursor
+map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+colors jcg
 
 set laststatus=2 " always show status line
 set statusline=%f\ %y\ %r\ \(y=%l/%L,x=%c\)\ \|\ %{fugitive#statusline()}

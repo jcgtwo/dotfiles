@@ -22,6 +22,8 @@ Plugin 'tpope/vim-markdown'
 
 Plugin 'vim-ruby/vim-ruby'
 
+"Plugin 'altercation/vim-colors-solarized'
+
 call vundle#end()
 
 "execute pathogen#infect()
@@ -29,7 +31,7 @@ call vundle#end()
 syntax on
 
 filetype plugin indent on
-
+set omnifunc=syntaxcomplete#Complete
 
 set hlsearch
 set background=dark
@@ -89,6 +91,9 @@ au BufNewFile,BufRead *.csv,*.tsv setlocal noexpandtab
 au BufNewFile,BufRead *.md,*.markdown setlocal tabstop=4
 au BufNewFile,BufRead *.md,*.markdown setlocal shiftwidth=4
 
+" \r calls rubocop on the current file
+map <leader>r :!rubocop %
+
 " \w kills trailing whitespace
 map <leader>w :%s/\s\+$//<cr>
 
@@ -100,7 +105,11 @@ map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-colors jcg
+" Solarized colors, and toggle light/dark with F5
+"colors solarized
+"call togglebg#map("<F5>")
 
 set laststatus=2 " always show status line
 set statusline=%f\ %y\ %r\ \(y=%l/%L,x=%c\)\ \|\ %{fugitive#statusline()}
+
+colors jcg

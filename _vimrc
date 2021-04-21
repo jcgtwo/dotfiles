@@ -47,7 +47,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
-set list listchars=tab:Â»Â·,trail:Â·,eol:$
+set list listchars=tab:»·,trail:·,eol:$
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set termencoding=utf-8
 set encoding=utf-8
@@ -64,8 +64,8 @@ let c_space_errors = 1
 syn on
 "set guifont=Menlo\ Regular:h10
 set guifont=Input\ Semi-Condensed\ 10
-set guioptions=aegimrLt
 set clipboard=unnamed
+set errorbells
 
 if has("autocmd")
   autocmd FileType ruby set omnifunc=rubycomplete#Complete
